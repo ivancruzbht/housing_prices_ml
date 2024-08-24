@@ -37,7 +37,7 @@ async def predict(data: HousingData):
             data.population,
             data.households,
             data.median_income,
-            1110.0,            # TODO: Placeholder for median_house_value, refactor to remove
+            0.0,            # TODO: Placeholder for median_house_value, refactor to remove
             data.ocean_proximity,
         ]]
 
