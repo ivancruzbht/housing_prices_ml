@@ -1,0 +1,19 @@
+data:
+  data_path: "data/housing.csv"
+  test_size: 0.3
+  random_state: 10
+  pipeline:
+    model_save_path: "models/pipeline.pkl"
+
+model:
+  input_size: 20
+  hidden_size: 500
+  output_size: 1
+  dropout_rate: 0.3
+
+training:
+  learning_rate: 0.1
+  epochs: 2000
+
+output:
+  model_save_path: "models/trained_model.pth"

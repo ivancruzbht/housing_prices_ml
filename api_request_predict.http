@@ -1,0 +1,15 @@
+POST http://0.0.0.0:8000/predict HTTP/1.1
+content-type: application/json
+
+{
+  "longitude": 122.23,
+  "latitude": 37.88,
+  "housing_median_age": 41.0,
+  "total_rooms": 880.0,
+  "total_bedrooms": 129.0,
+  "population": 322.0,
+  "households": 126.0,
+  "median_income": 8.3252,
+  "median_house_value": 0.0,
+  "ocean_proximity": "NEAR BAY"
+}
