@@ -1,7 +1,7 @@
 
 # Housing Prices ML
 
-  
+This is an small project to deploy an e2e Machine Learning solution that creates an API to do housing prices regression prediction.
 
 ## Installation
 
