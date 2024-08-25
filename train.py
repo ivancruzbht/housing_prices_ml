@@ -9,12 +9,11 @@ def train(config_path="config.yaml"):
     config = load_config(config_path)
     
     # Load data and preprocess the data
-    X_train, X_test, y_train, y_test = get_datasets(config)
+    X_train, _, y_train, _ = get_datasets(config)
 
     # Training
     model_params = config['model']
     training_params = config['training']
-    input_size = X_train.shape[1]
     
     mlp = MLP(**model_params)
     mlp_regressor = PyTorchRegressor(model=mlp, **training_params)
