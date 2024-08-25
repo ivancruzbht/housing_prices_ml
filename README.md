@@ -13,12 +13,12 @@ To set up the project, follow these steps:
 
 1.  **Install the required packages**
 
-	Install all the necessary packages by running the following command in your terminal:
+Install all the necessary packages by running the following command in your terminal:
 
   
 
 ```bash
-	pip install -r requirements.txt
+pip install -r requirements.txt
 ```
   
 
@@ -27,7 +27,7 @@ To set up the project, follow these steps:
 	After installing the required packages, start the server by running:
 
 ```bash
-	python server.py
+python server.py
 ```
   
 
@@ -38,7 +38,7 @@ To set up the project, follow these steps:
 	To install the project using Docker, run the following command in your terminal:
 
 ```bash
-	docker build -t housing-prices-prediction .
+docker build -t housing-prices-prediction .
 ```
   
 2.  **Run the application container**
@@ -46,7 +46,7 @@ To set up the project, follow these steps:
 	Run the server by running the following command in your terminal:
 
 ```bash
-	docker run -p 8000:8000 housing-prices-prediction
+docker run -p 8000:8000 housing-prices-prediction
 ```
 
 ## Get predictions
