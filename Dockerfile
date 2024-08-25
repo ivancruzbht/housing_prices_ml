@@ -10,6 +10,4 @@ COPY . .
 
 EXPOSE 8000
 
-RUN python train.py
-
 CMD ["python", "server.py"]

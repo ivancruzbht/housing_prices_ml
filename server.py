@@ -2,13 +2,19 @@ import pandas as pd
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from inference import inference, load_model
+from train import train
 from data_pipeline import load_pipeline
 import traceback
 from utils import load_config
 
 app = FastAPI()
 config = load_config("config.yaml")
-model = load_model(config)
+try:
+    model = load_model(config)
+except FileNotFoundError as e:
+    train()
+    model = load_model(config)
+
 pipeline = load_pipeline(config)
 
 

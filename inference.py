@@ -1,3 +1,4 @@
+import os
 import torch
 import numpy as np
 from model import PyTorchRegressor, MLP
@@ -10,6 +11,9 @@ def load_model(config):
     model_params = config['model']
     training_params = config['training']
     
+    if not os.path.exists(config['output']['model_save_path']):
+        raise FileNotFoundError("Model file not found. Please train the model first.")
+
     # Load the saved model state
     mlp = MLP(**model_params)
     mlp.load_state_dict(torch.load(config['output']['model_save_path']))
