@@ -14,7 +14,6 @@ try:
 except FileNotFoundError as e:
     train()
     model = load_model(config)
-
 pipeline = load_pipeline(config)
 
 
@@ -43,7 +42,7 @@ async def predict(data: HousingData):
             data.population,
             data.households,
             data.median_income,
-            0.0,            # TODO: Placeholder for median_house_value, refactor to remove
+            0.0, # median_house_value is not used for prediction
             data.ocean_proximity,
         ]]
 
