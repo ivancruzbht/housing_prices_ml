@@ -6,6 +6,7 @@ from sklearn.base import BaseEstimator, RegressorMixin
 from tqdm import tqdm
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print("CUDA device: ", device)
 
 class MLP(nn.Module):
     """
