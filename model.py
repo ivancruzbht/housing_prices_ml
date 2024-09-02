@@ -13,14 +13,18 @@ class MLP(nn.Module):
 
     Args:
         input_size (int): The size of the input features.
-        hidden_size (int): The size of the hidden layer.
+        hidden_size (int): The size of the hidden layers.
         output_size (int): The size of the output layer.
         dropout_rate (float, optional): The dropout rate for regularization. Defaults to 0.5.
 
     Attributes:
         fc1 (nn.Linear): The first fully connected layer.
+        bn1 (nn.BatchNorm1d): The batch normalization layer for the first hidden layer.
         fc2 (nn.Linear): The second fully connected layer.
+        bn2 (nn.BatchNorm1d): The batch normalization layer for the second hidden layer.
         fc3 (nn.Linear): The third fully connected layer.
+        bn3 (nn.BatchNorm1d): The batch normalization layer for the third hidden layer.
+        fc4 (nn.Linear): The output fully connected layer.
         relu (nn.ReLU): The ReLU activation function.
         dropout (nn.Dropout): The dropout layer.
 
@@ -33,18 +37,24 @@ class MLP(nn.Module):
     def __init__(self, input_size, hidden_size, output_size, dropout_rate=0.5):
         super(MLP, self).__init__()
         self.fc1 = nn.Linear(input_size, hidden_size)
-        self.fc2 = nn.Linear(hidden_size, hidden_size)
-        self.fc3 = nn.Linear(hidden_size, output_size)
+        self.bn1 = nn.BatchNorm1d(hidden_size)
+        self.fc2 = nn.Linear(hidden_size, hidden_size // 2)
+        self.bn2 = nn.BatchNorm1d(hidden_size // 2)
+        self.fc3 = nn.Linear(hidden_size // 2, hidden_size // 4)
+        self.bn3 = nn.BatchNorm1d(hidden_size // 4)
+        self.fc4 = nn.Linear(hidden_size // 4, output_size)
         self.relu = nn.ReLU()
         self.dropout = nn.Dropout(dropout_rate)
 
     def forward(self, x):
-        x = self.relu(self.fc1(x))
-        x = self.dropout(x) 
-        x = self.relu(self.fc2(x))
+        x = self.relu(self.bn1(self.fc1(x)))
         x = self.dropout(x)
-        x = self.fc3(x)
-        return x 
+        x = self.relu(self.bn2(self.fc2(x)))
+        x = self.dropout(x)
+        x = self.relu(self.bn3(self.fc3(x)))
+        x = self.dropout(x)
+        x = self.fc4(x)
+        return x
 
 class PyTorchRegressor(BaseEstimator, RegressorMixin):
     """
